@@ -118,3 +118,35 @@ small {
     color: #ccc;
     font-size: 0.75rem;
 }
+
+.section-title {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #ffc107;
+  text-align: center;
+}
+
+#tag-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tag-group {
+  background: #2b2b2b;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.tag-group h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #f0f0f0;
+}
+
+.tag-cloud {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

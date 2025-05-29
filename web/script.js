@@ -29,12 +29,13 @@ function getMoodIconClass(mood) {
 
 function getTimeOfDayLabel(timestamp) {
     const hour = new Date(timestamp).getHours();
-    if (hour < 5) return "Late Night 🌌";
-    if (hour < 12) return "Morning ☀️";
-    if (hour < 17) return "Afternoon 🌤";
-    if (hour < 21) return "Evening 🌆";
-    return "Night 🌙";
+    if (hour < 5) return "🌌 Late Night";
+    if (hour < 11) return "☀️ Morning";
+    if (hour < 16) return "🌤 Afternoon";
+    if (hour < 20) return "🌆 Evening";
+    return "🌙 Night";
 }
+
 
 function setDynamicHeader() {
     const header = document.getElementById("header");
@@ -51,6 +52,7 @@ function setDynamicHeader() {
 }
 
 setDynamicHeader();
+loadData();
 
 document.getElementById("command").addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
@@ -69,46 +71,47 @@ document.getElementById("command").addEventListener("keydown", async (e) => {
             body: JSON.stringify({ mood, tags }),
         });
 
-        await loadTimeline();
+        await loadData();
     }
 });
 
-function loadTimeline() {
+function loadData() {
     fetch(`/data.json?ts=${Date.now()}`)
         .then(res => res.json())
         .then(entries => {
-            const timeline = document.getElementById("timeline");
-            timeline.innerHTML = "";
-
             const moodCount = {};
+            const tagGroups = {
+                "🌌 Late Night": {},
+                "☀️ Morning": {},
+                "🌤 Afternoon": {},
+                "🌆 Evening": {},
+                "🌙 Night": {}
+            };
 
-            entries.slice().reverse().forEach(entry => {
+            entries.forEach(entry => {
                 const mood = entry.mood.toLowerCase();
-                const moodClass = getMoodIconClass(mood);
                 const tags = Array.isArray(entry.tags) ? entry.tags : [];
 
+                // For mood cloud
                 moodCount[mood] = (moodCount[mood] || 0) + 1;
 
-                const div = document.createElement("div");
-                div.className = "entry";
-                div.innerHTML = `
-          <div class="icon"><i class="fas ${moodClass}"></i></div>
-          <div class="content">
-            <div class="mood-row">
-              <strong>${entry.mood}</strong>
-              <div class="tags">
-                ${tags.map(tag => `<span class="tag">#${tag}</span>`).join(" ")}
-              </div>
-            </div>
-            <small>${getTimeOfDayLabel(entry.timestamp)}</small>
-          </div>
-        `;
-                timeline.appendChild(div);
+                // For tag groups by time of day
+                const label = getTimeOfDayLabel(entry.timestamp);
+                if (!tagGroups[label]) {
+                    console.warn("Unexpected label:", label);
+                    return;
+                }
+
+                tags.forEach(tag => {
+                    tagGroups[label][tag] = (tagGroups[label][tag] || 0) + 1;
+                });
             });
 
             renderMoodCloud(moodCount);
+            renderTagGroups(tagGroups);
         });
 }
+
 
 function renderMoodCloud(moodCount) {
     const cloud = document.getElementById("mood-cloud");
@@ -123,4 +126,34 @@ function renderMoodCloud(moodCount) {
     });
 }
 
-loadTimeline();
+function renderTagGroups(groupedTags) {
+    const container = document.getElementById("tag-groups");
+    container.innerHTML = "";
+
+    Object.entries(groupedTags).forEach(([timeLabel, tags]) => {
+        if (Object.keys(tags).length === 0) return;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "tag-group";
+
+        const heading = document.createElement("h3");
+        heading.textContent = timeLabel;
+
+        const tagCloud = document.createElement("div");
+        tagCloud.className = "tag-cloud";
+
+        Object.entries(tags)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10)
+            .forEach(([tag, count]) => {
+                const chip = document.createElement("div");
+                chip.className = "mood-chip";
+                chip.textContent = `#${tag} (${count})`;
+                tagCloud.appendChild(chip);
+            });
+
+        wrapper.appendChild(heading);
+        wrapper.appendChild(tagCloud);
+        container.appendChild(wrapper);
+    });
+}
