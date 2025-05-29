@@ -3,24 +3,26 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Moodmark</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
-    <div class="app">
-        <h1>📝 Moodmark Terminal</h1>
+    <div class="container">
+        <h1 id="header">Moodmark</h1>
 
         <div class="terminal">
-            <span class="prompt">$</span>
-            <input type="text" id="command" placeholder="Type /log mood happy" autofocus />
+            <input id="command" type="text" placeholder="Type your mood and optional tags (e.g. happy relaxed grateful)"
+                autofocus />
         </div>
 
-        <div class="timeline" id="timeline">
-            <!-- mood logs will appear here -->
-        </div>
+        <h2>Mood Overview</h2>
+        <div id="mood-cloud"></div>
+
+        <div id="timeline" class="timeline"></div>
     </div>
 
     <script src="script.js"></script>
