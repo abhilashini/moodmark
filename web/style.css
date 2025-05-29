@@ -1,8 +1,24 @@
 body {
-    font-family: sans-serif;
-    padding: 20px;
-}
+            font-family: monospace;
+            background: #111;
+            color: #0f0;
+            padding: 1rem;
+        }
 
-div {
-    margin-bottom: 10px;
-}
+        #terminal {
+            border: 1px solid #0f0;
+            padding: 1rem;
+        }
+
+        #output {
+            white-space: pre-wrap;
+            margin-bottom: 1rem;
+        }
+
+        input {
+            width: 100%;
+            background: #222;
+            color: #0f0;
+            border: none;
+            padding: 0.5rem;
+        }

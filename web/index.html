@@ -3,19 +3,15 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Mood Mark</title>
-    <script src="https://unpkg.com/kotlin-playground@1" data-selector=".kotlin-code"></script>
+    <title>Moodmark</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <h1>Logs</h1>
-    <div id="entries"></div>
-    <pre class="kotlin-code" data-target-platform="jvm">
-        fun main() {
-            println("Hello from Kotlin Playground!")
-        }
-    </pre>
+    <div id="terminal">
+        <div id="output">Moodmark CLI ready. Type a command:</div>
+        <input id="input" placeholder="e.g. log mood happy #grateful #sunny" autofocus />
+    </div>
     <script src="script.js"></script>
 </body>
 

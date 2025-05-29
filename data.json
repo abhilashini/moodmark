@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "mood": "happy",
+    "tags": [
+      "grateful",
+      "sunny"
+    ],
+    "timestamp": "2025-05-29T09:15:30.446Z"
+  },
+  {
+    "mood": "nice!",
+    "tags": [
+      "relaxed"
+    ],
+    "timestamp": "2025-05-29T09:15:53.126Z"
+  },
+  {
+    "mood": "happy",
+    "tags": [
+      "sunny",
+      "relaxed"
+    ],
+    "timestamp": "2025-05-29T09:23:18.180Z"
+  }
+]
