@@ -1,8 +1,9 @@
   
 # 🧠 Moodmark
 
-![Status](https://img.shields.io/badge/status-active-brightgreen)
-![Built with Flask](https://img.shields.io/badge/backend-Flask-Kotlin-blue.svg)
+[![Status: In Progress](https://img.shields.io/badge/Status-In%20Progress-yellow)]()
+[![Made with Kotlin](https://img.shields.io/badge/Made%20with-Kotlin-7f52ff?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Also Uses Flask](https://img.shields.io/badge/Temporary%20Backend-Flask-blue?logo=flask)](https://flask.palletsprojects.com/)
 ![Frontend](https://img.shields.io/badge/frontend-HTML%2FCSS%2FJS-orange)
 ![Next%20Backend-Ktor](https://img.shields.io/badge/next-Ktor%2FKotlin-yellow)
 ![License](https://img.shields.io/badge/license-MIT-green)
