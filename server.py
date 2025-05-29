@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, send_file, after_this_request
 import subprocess
 import json
 
@@ -19,13 +19,18 @@ def log_mood():
     data = request.get_json()
     mood = data.get("mood", "neutral")
 
-    subprocess.run(["./moodmark", "log", "mood", mood])
+    subprocess.run(["java", "-jar", "build/libs/moodmark-0.1.0-all.jar", "log", "mood", mood], capture_output=True, text=True)
 
     return jsonify({"status": "ok"})
                     
 @app.route("/data.json")
 def get_data():
-    return send_from_directory(".", "data.json")
+    @after_this_request
+    def add_header(response):
+        response.headers["Cache-Control"] = 'no-store'
+        return response
+
+    return send_file("data.json")
 
 if __name__ == "__main__":
     app.run(debug=True)
