@@ -1,36 +1,48 @@
-const input = document.getElementById("input");
-const output = document.getElementById("output");
+document.getElementById("command").addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+        const input = e.target.value.trim();
+        e.target.value = "";
 
-input.addEventListener("keydown", async (e) => {
-  if (e.key === "Enter") {
-    const command = input.value.trim();
-    output.textContent += `\n> ${command}`;
-    input.value = "";
+        if (input.startsWith("/log")) {
+            const parts = input.split(" ");
+            const mood = parts[2] || "neutral";
 
-    if (command.startsWith("log mood")) {
-      const parts = command.split(" ");
-      const mood = parts[2];
-      const tags = parts.slice(3).map(t => t.replace("#", ""));
+            await fetch("/log", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mood }),
+            });
 
-      const payload = {
-        mood: mood,
-        tags: tags,
-        timestamp: new Date().toISOString()
-      };
-
-      try {
-        const res = await fetch("/log", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        const result = await res.json();
-        output.textContent += `\nLogged: ${JSON.stringify(result.logged)}`;
-      } catch (err) {
-        output.textContent += `\nError: ${err.message}`;
-      }
-    } else {
-      output.textContent += "\nUnknown command.";
+            loadTimeline();
+        }
     }
-  }
 });
+
+async function loadTimeline() {
+    const res = await fetch("/data.json");
+    const entries = await res.json();
+
+    const timeline = document.getElementById("timeline");
+    timeline.innerHTML = "";
+
+    entries.slice().reverse().forEach((entry) => {
+        const moodIcon = {
+            happy: "😊",
+            sad: "😔",
+            neutral: "😐",
+        }[entry.mood] || "📝";
+
+        const div = document.createElement("div");
+        div.className = "entry";
+        div.innerHTML = `
+      <div class="icon">${moodIcon}</div>
+      <div>
+        <strong>${entry.mood}</strong><br />
+        <small>${entry.timestamp}</small>
+      </div>
+    `;
+        timeline.appendChild(div);
+    });
+}
+
+loadTimeline();

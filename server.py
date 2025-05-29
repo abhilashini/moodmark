@@ -1,38 +1,31 @@
 from flask import Flask, request, jsonify, send_from_directory
+import subprocess
 import json
-import os
 
 app = Flask(__name__, static_folder="web")
 
 DATA_FILE = "data.json"
 
 @app.route("/")
-def index():
+def root():
     return send_from_directory(app.static_folder, "index.html")
 
 @app.route("/<path:path>")
-def static_files(path):
+def static_proxy(path):
     return send_from_directory(app.static_folder, path)
 
 @app.route("/log", methods=["POST"])
-def log_entry():
+def log_mood():
     data = request.get_json()
-    
-    with open(DATA_FILE, "r") as f:
-        logs = json.load(f)
-    logs.append(data)
+    mood = data.get("mood", "neutral")
 
-    with open(DATA_FILE, "w") as f:
-        json.dump(logs, f, indent=2)
+    subprocess.run(["./moodmark", "log", "mood", mood])
 
-    return jsonify({"status": "success", "logged": data}), 201
-
-@app.route("/entries")
-def get_entries():
-    with open(DATA_FILE, "r") as f:
-        logs = json.load(f)
-
-    return jsonify(logs)
+    return jsonify({"status": "ok"})
+                    
+@app.route("/data.json")
+def get_data():
+    return send_from_directory(".", "data.json")
 
 if __name__ == "__main__":
     app.run(debug=True)

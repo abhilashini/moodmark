@@ -3,15 +3,26 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Moodmark</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div id="terminal">
-        <div id="output">Moodmark CLI ready. Type a command:</div>
-        <input id="input" placeholder="e.g. log mood happy #grateful #sunny" autofocus />
+    <div class="app">
+        <h1>📝 Moodmark Terminal</h1>
+
+        <div class="terminal">
+            <span class="prompt">$</span>
+            <input type="text" id="command" placeholder="Type /log mood happy" autofocus />
+        </div>
+
+        <div class="timeline" id="timeline">
+            <!-- mood logs will appear here -->
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
