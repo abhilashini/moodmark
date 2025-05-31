@@ -1,103 +1,18 @@
 [
     {
-        "mood": "happy",
-        "timestamp": "2025-05-29T09:15:30.446Z",
-        "tags": [
-            "grateful",
-            "sunny"
-        ]
+        "mood": "test",
+        "timestamp": "2025-05-31T08:06:45.340587281"
     },
     {
-        "mood": "nice!",
-        "timestamp": "2025-05-29T09:15:53.126Z",
-        "tags": [
-            "relaxed"
-        ]
+        "mood": "test",
+        "timestamp": "2025-05-31T08:06:49.247732970"
     },
     {
-        "mood": "happy",
-        "timestamp": "2025-05-29T09:23:18.180Z",
-        "tags": [
-            "sunny",
-            "relaxed"
-        ]
+        "mood": "test",
+        "timestamp": "2025-05-31T08:06:55.998702983"
     },
     {
-        "mood": "happy",
-        "timestamp": "2025-05-29T11:30:37.068180466",
-        "tags": [
-            "relaxed"
-        ]
-    },
-    {
-        "mood": "irritated",
-        "timestamp": "2025-05-29T11:33:27.625529432"
-    },
-    {
-        "mood": "irritated",
-        "timestamp": "2025-05-29T11:33:38.049813843",
-        "tags": [
-            "hangry"
-        ]
-    },
-    {
-        "mood": "mood",
-        "timestamp": "2025-05-29T11:34:56.184464703"
-    },
-    {
-        "mood": "tired",
-        "timestamp": "2025-05-29T11:37:30.996568877"
-    },
-    {
-        "mood": "curious",
-        "timestamp": "2025-05-29T11:37:41.889442129"
-    },
-    {
-        "mood": "nice",
-        "timestamp": "2025-05-29T11:38:03.147732326"
-    },
-    {
-        "mood": "excited",
-        "timestamp": "2025-05-29T11:38:20.519599802"
-    },
-    {
-        "mood": "angry",
-        "timestamp": "2025-05-29T11:39:21.343081806"
-    },
-    {
-        "mood": "grateful",
-        "timestamp": "2025-05-29T12:23:47.793592065"
-    },
-    {
-        "mood": "relaxed",
-        "timestamp": "2025-05-29T12:24:01.876600586"
-    },
-    {
-        "mood": "happy",
-        "timestamp": "2025-05-29T12:29:53.711859152"
-    },
-    {
-        "mood": "angry",
-        "timestamp": "2025-05-29T12:31:15.396083441"
-    },
-    {
-        "mood": "happy",
-        "timestamp": "2025-05-29T12:55:11.418052678"
-    },
-    {
-        "mood": "energetic",
-        "timestamp": "2025-05-29T12:57:46.427055423"
-    },
-    {
-        "mood": "sleepy",
-        "timestamp": "2025-05-29T16:58:55.574932823"
-    },
-    {
-        "mood": "sleepy",
-        "timestamp": "2025-05-29T17:03:53.448240254"
-    },
-    {
-        "mood": "peaceful",
-        "timestamp": "2025-05-29T17:06:29.825914827"
+        "mood": "check",
+        "timestamp": "2025-05-31T08:07:07.461708866"
     }
 ]

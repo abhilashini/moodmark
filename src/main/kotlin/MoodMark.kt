@@ -13,24 +13,28 @@ val json = Json {
     prettyPrint = true
 }
 
+fun logMood(
+    mood: String,
+    tags: List<String> = emptyList(),
+    file: File = File("data.json"),
+    timestampProvider: () -> String = { LocalDateTime.now().toString() }
+) {
+    val entries = if (file.exists()) {
+        val content = file.readText()
+        if (content.isNotBlank()) {
+            json.decodeFromString<List<Entry>>(content)
+        } else emptyList()
+    } else emptyList()
+
+    val newEntry = Entry(mood, timestampProvider(), tags)
+    val updated = entries + newEntry
+    file.writeText(json.encodeToString(updated))
+}
+
 fun main(args: Array<String>) {
     if (args.size >= 3 && args[0] == "log" && args[1] == "mood") {
-        val mood = args[2] ?: "neutral"
+        val mood = args[2]
         val tags = if (args.size > 3) args.slice(3 until args.size) else emptyList()
-        
-        val entries = if (jsonFile.exists()) {
-            val content = jsonFile.readText()
-            if (content.isNotBlank()) {
-                json.decodeFromString<List<Entry>>(content)
-            } else {
-                emptyList()
-            }
-        } else {
-            emptyList()
-        }
-
-        val newEntry = Entry(mood, LocalDateTime.now().toString(), tags)
-        val updated = entries + newEntry
-        jsonFile.writeText(json.encodeToString(updated))
+        logMood(mood, tags)
     }
 }

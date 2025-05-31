@@ -14,6 +14,13 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    testImplementation(kotlin("test")) // <- basic test library (kotlin.test)
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:1.9.22")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 application {
