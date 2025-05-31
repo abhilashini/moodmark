@@ -1,8 +1,9 @@
   
 # 🧠 Moodmark
 
-![Status](https://img.shields.io/badge/status-active-brightgreen)
-![Built with Flask](https://img.shields.io/badge/backend-Flask-blue.svg)
+[![Status: In Progress](https://img.shields.io/badge/Status-In%20Progress-yellow)]()
+[![Made with Kotlin](https://img.shields.io/badge/Made%20with-Kotlin-7f52ff?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Also Uses Flask](https://img.shields.io/badge/Temporary%20Backend-Flask-blue?logo=flask)](https://flask.palletsprojects.com/)
 ![Frontend](https://img.shields.io/badge/frontend-HTML%2FCSS%2FJS-orange)
 ![Next%20Backend-Ktor](https://img.shields.io/badge/next-Ktor%2FKotlin-yellow)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -46,3 +47,5 @@ A minimal, local-first mood tracking app — input a mood and tags via a simple 
    ```
 3. Open your browser at http://localhost:5000.
 4. Enter your mood commands in the input bar and watch your mood data visualized!
+
+![Mood Tracker UI](assets/moodmark-preview.png)
